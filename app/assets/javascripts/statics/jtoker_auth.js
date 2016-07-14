@@ -9,10 +9,14 @@ $(document).ready(function(){
         $('#logout').show();
         $('#login').hide();
         $('#signup').hide();
+        $('#posts-new-btn').show();
+        $('#post-modal-edit-btn').show();
       } else {
         $('#logout').hide();
         $('#login').show();
         $('#signup').show();
+        $('#posts-new-btn').hide();
+        $('#post-modal-edit-btn').hide();
       }
     },
     bindLogOutClick: function () {

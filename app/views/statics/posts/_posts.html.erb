@@ -1,0 +1,14 @@
+<div class="container-fluid posts content" style="display: none;">
+  <h1>Posts</h1>
+
+  <!-- our button to activate new modal -->
+  <!-- hidden by default when logged out -->
+  <div class="text-center" id="posts-new-btn" style="display: none;">
+    <a class="btn btn-primary" id="show-new-edit-model">New</a>
+  </div>
+
+  <!-- place to put index data -->
+  <div class="row" id="posts-index"></div>
+</div>
+
+<%= render 'statics/posts/show_new_edit_modal' %>
