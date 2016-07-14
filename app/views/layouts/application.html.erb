@@ -8,7 +8,12 @@
 </head>
 <body class="ajax <%= controller_name %> <%= action_name %>">
 
-<%= yield %>
+  <%= render 'partials/header' %>
+
+  <%= yield %>
+
+  <%= render 'partials/signup_modal' %>
+  <%= render 'partials/login_modal' %>
 
 </body>
 </html>
