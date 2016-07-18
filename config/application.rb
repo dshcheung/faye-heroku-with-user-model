@@ -35,7 +35,7 @@ module RailsBlogAjaxSinglePageSample
     # add faye to rack middleware
     config.middleware.delete Rack::Lock
     config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
-      add_extension(ClientEvent.new)
+      # add_extension(ClientEvent.new) # currently not needed
     end
   end
 end

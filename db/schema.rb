@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714174819) do
+ActiveRecord::Schema.define(version: 20160718163749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20160714174819) do
     t.json     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "chat_online"
+    t.string   "chat_client_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

@@ -8,7 +8,17 @@ var bindClientIDWithUser = {
 
       $.ajax({
         url: '/bind_user',
-        method: 'post'
+        method: 'post',
+        data: {
+          client_id: message.clientId
+        },
+        success: function (resp) {
+          console.log("Successfully binded user");
+        },
+        error: function (resp) {
+          console.log("Can't bind user because user not found");
+          client.disconnect();
+        }
       });
     }
     callback(message);
@@ -28,7 +38,7 @@ window.connectChat = function () {
 
   var subscribeChat = function () {
     $chatBox.text('');
-    client.subscribe('/comments', function(payload) {
+    client.subscribe('/chat', function(payload) {
       console.log("message recieved", payload);
       $chatBox.append("<p><span>" + moment(payload.created_at).format() + ": </span>" + payload.message + "</p>");
       scrollHeight = $chatBox[0].scrollHeight;
@@ -40,7 +50,7 @@ window.connectChat = function () {
     $formBox.off().on("submit", function(e){
       e.preventDefault();
 
-      client.publish('/comments', {
+      client.publish('/chat', {
         message: $newMessageInput.val(),
         created_at: moment().format()
       });
