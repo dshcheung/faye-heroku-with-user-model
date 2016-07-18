@@ -19,9 +19,17 @@ $(document).ready(function(){
         $('.home').show();
       });
     },
+    bindToLiveChat: function () {
+      var that = this;
+      $('.to-live-chat').on("click", function () {
+        that.hideAllContent();
+        $('.live-chat').show();
+      });
+    },
     init: function () {
       this.bindToHome();
       this.bindToPostIndex();
+      this.bindToLiveChat();
     }
   };
 

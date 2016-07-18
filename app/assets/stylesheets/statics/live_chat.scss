@@ -1,0 +1,9 @@
+#chat {
+  text-align: left;
+  height: 200px;
+  border: 1px solid black;
+  overflow-y: auto;
+  > p > span{
+    color: blue;
+  }
+}
