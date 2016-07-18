@@ -16,4 +16,5 @@
 //= require pubsub-js/src/pubsub
 //= require j-toker/dist/jquery.j-toker
 //= require bootstrap/dist/js/bootstrap
+//= require moment/moment
 //= require_tree .

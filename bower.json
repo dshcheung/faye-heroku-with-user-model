@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "j-toker": "^0.0.9"
+    "j-toker": "^0.0.9",
+    "moment": "^2.14.1"
   }
 }
