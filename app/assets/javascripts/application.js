@@ -17,4 +17,5 @@
 //= require j-toker/dist/jquery.j-toker
 //= require bootstrap/dist/js/bootstrap
 //= require moment/moment
+//= require faye
 //= require_tree .
