@@ -22,8 +22,10 @@ $(document).ready(function(){
     bindToLiveChat: function () {
       var that = this;
       $('.to-live-chat').on("click", function () {
-        that.hideAllContent();
-        $('.live-chat').show();
+        if (!$.isEmptyObject($.auth.user)) {
+          that.hideAllContent();
+          $('.live-chat').show();
+        }
       });
     },
     init: function () {

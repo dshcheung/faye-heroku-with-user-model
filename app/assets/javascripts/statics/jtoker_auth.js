@@ -2,6 +2,16 @@ $(document).ready(function(){
   if (!$('body').hasClass('ajax')) { return false; }
 
   var auth = {
+    afterLoginAjaxCalls: function () {
+      this.clearInputs();
+      this.setAuthButtons();
+      window.connectChat(); // from faye_chat.js
+    },
+    afterLogoutAjaxCall: function () {
+      this.clearInputs();
+      this.setAuthButtons();
+      window.disconnectChat(); // from faye_chat.js
+    },
     setAuthButtons: function () {
       var existance = !$.isEmptyObject($.auth.user);
 
@@ -11,12 +21,16 @@ $(document).ready(function(){
         $('#signup').hide();
         $('#posts-new-btn').show();
         $('#post-modal-edit-btn').show();
+        $('#login-modal').modal('hide');
+        $('#signup-modal').modal('hide');
+        $('.to-live-chat').show();
       } else {
         $('#logout').hide();
         $('#login').show();
         $('#signup').show();
         $('#posts-new-btn').hide();
         $('#post-modal-edit-btn').hide();
+        $('.to-live-chat').hide();
       }
     },
     bindLogOutClick: function () {
@@ -25,9 +39,9 @@ $(document).ready(function(){
       $('#logout').on('click', function (e) {
         e.preventDefault();
         $.auth.signOut().then(function(resp){
-          that.setAuthButtons();
+          that.afterLogoutAjaxCall();
         }).fail(function(resp){
-          that.setAuthButtons();
+          that.afterLogoutAjaxCall();
         });
       });
     },
@@ -43,9 +57,7 @@ $(document).ready(function(){
         };
 
         $.auth.emailSignIn(params).then(function(resp){
-          $('#login-modal').modal('hide');
-          that.clearInputs();
-          that.setAuthButtons();
+          that.afterLoginAjaxCalls();
         }).fail(function(resp){
           console.log(resp);
         });
@@ -72,9 +84,7 @@ $(document).ready(function(){
         };
 
         $.auth.emailSignUp(params).then(function(user){
-          $('#signup-modal').modal('hide');
-          that.clearInputs();
-          that.setAuthButtons();
+          that.afterLoginAjaxCalls();
         }).fail(function(resp){
           console.log(resp);
         });
@@ -103,10 +113,10 @@ $(document).ready(function(){
         // Note that if you put a '/' at the end of the link, there will be errors when calling the api
         apiUrl: 'http://localhost:3000'
       }).then(function(resp){
-        that.setAuthButtons();
+        that.afterLoginAjaxCalls();
       }).fail(function(resp){
         console.log(resp);
-        that.setAuthButtons();
+        that.afterLogoutAjaxCall();
       });
     },
     init: function () {

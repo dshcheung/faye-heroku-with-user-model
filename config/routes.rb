@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root 'statics#main'
 
   resources :posts
+
+  post '/bind_user', to: 'users#bind_user'
  end
