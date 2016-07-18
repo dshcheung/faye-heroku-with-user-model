@@ -5,25 +5,27 @@ class UsersController < ApplicationController
     require 'eventmachine'
 
     EM.run {
-      client = Faye::Client.new('http://localhost:3000/faye')
-
-      publication = client.publish('/chat', {
+      publication = faye_client.publish('/chat', {
         message: "#{current_user.email.upcase} has Joined!",
         created_at: Time.now
       })
 
       publication.callback do
-        client.disconnect
+        faye_client.disconnect
       end
 
       publication.errback do |error|
         puts 'There was a problem: ' + error.message
-        client.disconnect
+        faye_client.disconnect
       end
     }
 
     current_user.update(chat_online: true, chat_client_id: params[:client_id])
 
     head 200
+  end
+
+  def faye_client
+    @faye_client ||= Faye::Client.new('http://localhost:3000/faye')
   end
 end
