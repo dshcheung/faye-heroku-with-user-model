@@ -26,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def faye_client
-    @faye_client ||= Faye::Client.new('http://localhost:3000/faye')
+    @faye_client ||= Faye::Client.new(ENV['FAYE_SERVER_END_POINT'])
   end
 end
