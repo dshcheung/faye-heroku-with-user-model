@@ -21,6 +21,7 @@ $(document).ready(function(){
     },
     bindToLiveChat: function () {
       var that = this;
+      console.log("test");
       $('.to-live-chat').on("click", function () {
         if (!$.isEmptyObject($.auth.user)) {
           that.hideAllContent();

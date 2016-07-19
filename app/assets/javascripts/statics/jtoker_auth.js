@@ -83,7 +83,8 @@ $(document).ready(function(){
           password_confirmation: $('#signup-modal #signup-form input[name="password_confirmation"]').val()
         };
 
-        $.auth.emailSignUp(params).then(function(user){
+        $.auth.emailSignUp(params).then(function(resp){
+          $.auth.user = resp.data;
           that.afterLoginAjaxCalls();
         }).fail(function(resp){
           console.log(resp);
