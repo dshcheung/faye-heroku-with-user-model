@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:bind_user]
+
+  def chat_online
+    render json: User.where(chat_online: true)
+  end
 
   def bind_user
     require 'eventmachine'

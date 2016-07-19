@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :posts
 
   post '/bind_user', to: 'users#bind_user'
+
+  get '/users/chat/online', to: 'users#chat_online'
  end
